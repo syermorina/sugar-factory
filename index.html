@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sugar Factory — Prizren</title>
+<meta name="description" content="Sugar Factory në Prizren, Abi Çarshia / Food Court. Waffle, crepe, pancakes, churros, donuts, macarons, milkshakes dhe cocktails.">
+<link rel="icon" href="assets/u-icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE: e gëzueshme, familjare, si brandbook-u: "fabrikë e vërtetë gëzimi"
+   IDEA: një fabrikë ëmbëlsirash; makina e brandbook-ut prodhon produktet mbi rripin transportues gjatë scroll-it
+   PICTURE: logo, çokollatë që pikon, ilustrimet e menusë, makina e fabrikës, personazhet
+   COLOUR and TYPE: rozë #F9AACA, blu #A5D4F3, kafe #442316, vjollcë #332842; Bumboo + Outfit
+   LAYOUT: hero rozë me rrjetë, histori kafe, fabrika blu, menuja me kategori, galeria, vizito, footer vjollcë */
+@font-face{font-family:Bumboo;src:url(assets/bumboo-sf.woff2) format("woff2");font-display:swap}
+:root{color-scheme:light;--pink:#f9aaca;--blue:#a5d4f3;--choc:#442316;--plum:#332842;--line:#ee95ba;--red:#fc3838;--white:#fffaf7}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:120px}
+body{margin:0;background:var(--pink);color:var(--choc);font:17px/1.6 Outfit,system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3,.bb{font-family:Bumboo,"Arial Black",sans-serif;font-weight:400;text-transform:lowercase;line-height:1.02;margin:0;letter-spacing:.5px;text-wrap:balance}
+h2{font-size:clamp(38px,6vw,72px)}
+a{color:inherit}
+img{display:block;max-width:100%}
+.grid-bg{background-color:var(--pink);background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 max(5vw,18px)}
+.drip{height:clamp(50px,7vw,90px);background:url(assets/drip-wide.svg) repeat-x top/auto 100%;position:relative;z-index:5;margin-bottom:calc(-1 * clamp(50px,7vw,90px));pointer-events:none}
+.d-pink{background-image:url(assets/drip-pink.svg)}.d-blue{background-image:url(assets/drip-blue.svg);background-position:120px 0}.d-plum{background-image:url(assets/drip-plum.svg);background-position:60px 0}
+/* nav */
+nav{position:fixed;inset:0 0 auto;z-index:60;padding:12px max(5vw,18px);display:flex;align-items:center;justify-content:space-between;gap:16px;transition:background .35s,box-shadow .35s,padding .35s}
+nav.on{background:rgba(249,170,202,.94);backdrop-filter:blur(8px);box-shadow:0 4px 0 var(--choc);padding-block:8px}
+nav .lg img{height:46px;width:auto;transition:height .35s}
+nav.on .lg img{height:38px}
+.nl{display:flex;gap:4px;flex-wrap:wrap}
+.nl a{text-decoration:none;font-weight:600;padding:10px 14px;border-radius:99px;font-size:16px}
+.nl a:hover{background:rgba(68,35,22,.1)}
+.nl .cta{background:var(--choc);color:var(--pink)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--plum);outline-offset:3px}
+/* hero */
+.hero{position:relative;min-height:100svh;display:grid;place-items:center;text-align:center;padding:120px max(5vw,18px) 140px;overflow:hidden}
+.hero .logo{width:min(720px,88vw);margin:0 auto;filter:drop-shadow(0 10px 0 rgba(68,35,22,.12));will-change:transform}
+.hero p{font-size:clamp(18px,2vw,22px);max-width:36ch;margin:24px auto 30px;font-weight:500}
+.btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;min-height:52px;padding:0 26px;border-radius:99px;font:600 17px Outfit;text-decoration:none;border:3px solid var(--choc);cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-3px)}
+.b1{background:var(--choc);color:var(--pink);box-shadow:0 6px 0 var(--plum)}
+.b2{background:var(--blue);color:var(--choc);box-shadow:0 6px 0 var(--choc)}
+.fl{position:absolute;z-index:1;will-change:transform;pointer-events:none}
+.fl img{width:100%;height:auto;filter:drop-shadow(0 14px 18px rgba(68,35,22,.25))}
+.hero-in{position:relative;z-index:2}
+.loc{display:inline-flex;align-items:center;gap:8px;background:var(--blue);border:3px solid var(--choc);border-radius:99px;padding:6px 16px;font-weight:600;margin-bottom:26px;font-size:15px}
+.loc svg{width:18px;height:18px}
+/* intro */
+.intro{background:var(--choc);color:var(--white);padding:clamp(110px,13vw,170px) 0 clamp(70px,9vw,120px);position:relative}
+.intro .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(30px,5vw,70px);align-items:center}
+.say{font-family:Bumboo;text-transform:lowercase;font-size:clamp(34px,5vw,64px);line-height:1.08}
+.say span{color:rgba(255,250,247,.16);transition:color .4s}
+.say span.on{color:var(--pink)}
+.say span.on.b{color:var(--blue)}
+.intro p{color:#f3dfd6;margin:0 0 16px}
+.chars{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap}
+.chars img{width:64px;height:64px;filter:brightness(0) invert(1);opacity:.92;transition:transform .3s}
+.chars img:hover{transform:rotate(-10deg) scale(1.1)}
+/* factory */
+.factory{background:var(--blue);position:relative;height:330vh}
+.fs{position:sticky;top:0;height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding-top:84px}
+.fhead{text-align:center;margin-bottom:clamp(10px,3vh,30px)}
+.fhead p{margin:10px auto 0;max-width:46ch;font-weight:500}
+.mach{position:relative;width:min(1000px,94vw,calc((100svh - 250px) * 1.625));margin:0 auto;aspect-ratio:655.8/403.5}
+.mach>img{width:100%;height:100%}
+.belt{position:absolute;left:14%;width:66%;bottom:44.2%;height:28%;pointer-events:none}
+.belt .it{position:absolute;bottom:0;left:0;width:17%;opacity:0;transform-origin:50% 100%}
+.belt .it img{width:100%;height:auto}
+.gear{position:absolute;border-radius:50%;pointer-events:none}
+.fcount{text-align:center;font-family:Bumboo;font-size:clamp(22px,3vw,34px);margin-top:clamp(8px,2vh,22px);min-height:1.2em}
+/* menu */
+.menu{padding:clamp(110px,12vw,160px) 0 60px;position:relative}
+.mtop{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+.mtop p{max-width:42ch;margin:0;font-weight:500}
+.cnav{position:sticky;top:62px;z-index:40;margin:28px 0 10px;padding:10px 0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.cnav a{flex:none;text-decoration:none;font-weight:600;padding:10px 18px;border-radius:99px;border:3px solid var(--choc);background:var(--white);white-space:nowrap}
+.cnav a.on{background:var(--choc);color:var(--pink)}
+.cat{padding-top:44px}
+.cat h3{font-size:clamp(34px,4.6vw,56px);margin-bottom:22px;display:flex;align-items:center;gap:14px}
+.cat h3 img{width:56px;height:56px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:22px}
+.card{background:var(--blue);border:3px solid var(--choc);border-radius:26px;padding:18px 18px 20px;box-shadow:8px 8px 0 var(--choc);display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s}
+.card:hover{transform:translate(-3px,-3px) rotate(-.6deg);box-shadow:11px 11px 0 var(--choc)}
+.card.dk{background:var(--choc);color:var(--white)}
+.card.dk .pr{background:var(--blue);color:var(--choc)}
+.ill{height:170px;display:grid;place-items:center;margin-bottom:12px}
+.ill img{max-height:150px;max-width:90%;width:auto;transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.card:hover .ill img{transform:scale(1.08) rotate(-4deg)}
+.ch{display:flex;justify-content:space-between;align-items:flex-start;gap:8px 10px;flex-wrap:wrap}
+.card h4{font-family:Bumboo;font-weight:400;text-transform:lowercase;font-size:clamp(22px,2.2vw,26px);margin:0;line-height:1.05;overflow-wrap:anywhere}
+.card h4 small{display:block;font-family:Outfit;text-transform:none;font-size:14px;font-weight:600;opacity:.8;margin-top:4px}
+.pr{flex:none;background:var(--choc);color:var(--pink);font-family:Bumboo;font-size:24px;padding:4px 12px 2px;border-radius:10px;white-space:nowrap}
+.fv{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.fv span{font-size:13px;font-weight:600;padding:4px 10px;border-radius:99px;background:rgba(255,250,247,.6)}
+.card.dk .fv span{background:rgba(255,250,247,.12)}
+.tops{margin-top:26px;background:var(--choc);color:var(--white);border-radius:24px;padding:22px 24px;display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center}
+.tops .bb{font-size:28px;color:var(--pink);white-space:nowrap}
+.tops .bb b{display:block;font-weight:400;color:var(--blue);font-size:22px}
+.tops div:last-child{display:flex;flex-wrap:wrap;gap:8px}
+.tops span{background:rgba(255,250,247,.12);padding:6px 12px;border-radius:99px;font-size:14px;font-weight:600}
+/* gallery */
+.gal{background:var(--plum);color:var(--white);padding:clamp(110px,12vw,160px) 0 clamp(60px,8vw,110px);position:relative}
+.gal h2{color:var(--blue)}
+.gg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:34px}
+.gg figure{margin:0;border-radius:24px;overflow:hidden;aspect-ratio:3/4;border:4px solid var(--pink)}
+.gg figure:nth-child(even){transform:translateY(46px)}
+.gg img{width:100%;height:118%;object-fit:cover;will-change:transform}
+/* visit */
+.visit{padding:clamp(120px,12vw,170px) 0 clamp(60px,8vw,110px);position:relative}
+.vg{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,4vw,60px);align-items:center}
+.vc{display:grid;gap:14px}
+.vc div{background:var(--white);border:3px solid var(--choc);border-radius:22px;padding:18px 22px;box-shadow:6px 6px 0 var(--choc)}
+.vc h3{font-size:24px;margin-bottom:4px}
+.vc p{margin:0;font-weight:500;overflow-wrap:anywhere}
+.uicon{width:min(260px,50vw);margin-top:26px;will-change:transform}
+footer{background:var(--plum);color:#e9e2f3;padding:34px max(5vw,18px);display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;font-size:15px}
+footer img{height:44px;width:auto}
+/* reveal */
+.rv{opacity:0;transform:translateY(40px);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+.pop{opacity:0;transform:scale(.85) translateY(30px)}
+.pop.in{opacity:1;transform:none;transition:opacity .5s,transform .7s cubic-bezier(.3,1.5,.5,1)}
+@media(max-width:860px){.intro .wrap,.vg{grid-template-columns:1fr}.nl a:not(.cta){display:none}.gg{grid-template-columns:1fr 1fr}.tops{grid-template-columns:1fr}}
+@media(max-width:600px){.factory{height:280vh}.mach{width:150vw;margin-left:-22vw}.belt .it{width:22%}.gg figure:nth-child(even){transform:translateY(24px)}.fl.hide-m{display:none}.cnav{top:56px}nav .lg img{height:38px}}
+@media(prefers-reduced-motion:reduce){.rv,.pop{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+ <a class="lg" href="#top" aria-label="Sugar Factory, në fillim"><img src="assets/logo.svg" alt="Sugar Factory"></a>
+ <div class="nl"><a href="#fabrika">Fabrika</a><a href="#menu">Menuja</a><a href="#galeria">Galeria</a><a class="cta" href="#vizito">Na vizito</a></div>
+</nav>
+
+<header class="hero grid-bg" id="top">
+ <div class="fl" data-k="waffle" style="width:clamp(130px,17vw,250px);left:3%;top:16%"><img src="assets/waffle.png" alt=""></div>
+ <div class="fl hide-m" data-k="donut" style="width:clamp(70px,8vw,120px);left:14%;bottom:20%"><img src="assets/donut.png" alt=""></div>
+ <div class="fl" data-k="shake" style="width:clamp(60px,6vw,96px);right:7%;top:14%"><img src="assets/shake.png" alt=""></div>
+ <div class="fl" data-k="macarons" style="width:clamp(80px,9vw,130px);right:5%;bottom:22%"><img src="assets/macarons.png" alt=""></div>
+ <div class="fl hide-m" data-k="bubble" style="width:clamp(80px,8vw,120px);right:20%;top:62%"><img src="assets/bubble.png" alt=""></div>
+ <div class="fl hide-m" data-k="churros" style="width:clamp(56px,5vw,80px);left:24%;top:12%"><img src="assets/churros.png" alt=""></div>
+ <div class="hero-in">
+  <span class="loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#442316" d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Prizren · Abi Çarshia / Food Court</span>
+  <h1><img class="logo" id="heroLogo" src="assets/logo.svg" alt="Sugar Factory"></h1>
+  <p>Një fabrikë e vërtetë gëzimi. Waffle, crepe, pancakes, churros, donuts dhe macarons, të freskëta për çdo moshë.</p>
+  <div class="btns"><a class="btn b1" href="#menu">Shiko menunë</a><a class="btn b2" href="#vizito">Ku jemi</a></div>
+ </div>
+</header>
+<div class="drip d-pink"></div>
+
+<section class="intro" id="rreth">
+ <div class="wrap">
+  <p class="say" id="say"></p>
+  <div class="rv">
+   <p>Emri ynë e thotë gjithçka. Te Sugar Factory çdo recetë përgatitet me kujdes, çdo porosi vjen e freskët dhe çdo ngjyrë është menduar për të sjellë një buzëqeshje.</p>
+   <p>Për fëmijët është një botë plot ngjyra dhe befasi. Për të rriturit, një kthim te ajo ndjenjë e fëmijërisë. Prindër e fëmijë, miq e familje, të gjithë rreth një tavoline.</p>
+   <div class="chars"><img src="assets/ic-pancake.svg" alt="Pancake"><img src="assets/ic-crepe.svg" alt="Crepe"><img src="assets/ic-shake.svg" alt="Milkshake"><img src="assets/ic-churros.svg" alt="Churros"><img src="assets/ic-waffle.svg" alt="Waffle"></div>
+  </div>
+ </div>
+</section>
+<div class="drip"></div>
+
+<section class="factory" id="fabrika">
+ <div class="fs">
+  <div class="fhead wrap"><h2>Linja e prodhimit</h2><p>Bëj scroll dhe shiko fabrikën duke punuar. Çdo ëmbëlsirë del e freskët nga banaku ynë.</p></div>
+  <div class="mach" id="mach">
+   <img src="assets/machine.svg" alt="Ilustrimi i makinës së fabrikës Sugar Factory">
+   <div class="belt" id="belt"></div>
+  </div>
+  <div class="fcount" id="fcount"></div>
+ </div>
+</section>
+<div class="drip d-blue"></div>
+
+<section class="menu grid-bg" id="menu">
+ <div class="wrap">
+  <div class="mtop rv"><h2>Menuja</h2><p>Ekstra 0.70€ për çdo mbushje shtesë. Pyet në banak për shijet e ditës.</p></div>
+  <div class="cnav" id="cnav"></div>
+  <div id="cats"></div>
+ </div>
+</section>
+<div class="drip d-pink"></div>
+
+<section class="gal" id="galeria">
+ <div class="wrap">
+  <h2 class="rv">Brenda fabrikës</h2>
+  <div class="gg">
+   <figure class="rv"><img src="img/banaku.jpg" alt="Banaku i Sugar Factory me menunë digjitale"></figure>
+   <figure class="rv"><img src="img/staff.jpg" alt="Punonjësja duke shërbyer donuts"></figure>
+   <figure class="rv"><img src="img/vitrina.jpg" alt="Vitrina me macarons dhe donuts"></figure>
+   <figure class="rv"><img src="img/salla.jpg" alt="Salla me karrige dhe banaku i ndriçuar"></figure>
+  </div>
+ </div>
+</section>
+<div class="drip d-plum"></div>
+
+<section class="visit grid-bg" id="vizito">
+ <div class="wrap vg">
+  <div class="rv">
+   <h2>Të presim në fabrikë</h2>
+   <p style="font-weight:500;max-width:40ch">Për një waffle me shoqërinë, një milkshake pas qytetit ose një kuti macarons për dhuratë.</p>
+   <div class="btns" style="justify-content:flex-start;margin-top:22px"><a class="btn b1" href="https://www.google.com/maps/search/?api=1&query=Abi+%C3%87arshia+Prizren" rel="noopener">Hap në Google Maps</a></div>
+   <img class="uicon" id="uicon" src="assets/u-icon.svg" alt="">
+  </div>
+  <div class="vc">
+   <div class="rv"><h3>Lokacioni</h3><p>Abi Çarshia / Food Court, Prizren</p></div>
+   <div class="rv"><h3>Email</h3><p><a href="mailto:sugarfactory04@gmail.com">sugarfactory04@gmail.com</a></p></div>
+   <div class="rv"><h3>Menuja</h3><p>Waffle, crepe, pancakes, churros, donuts, macarons, croissant, akullore, milkshakes dhe cocktails.</p></div>
+  </div>
+ </div>
+</section>
+
+<footer><img src="assets/logo-pink.svg" alt="Sugar Factory"><span>Abi Çarshia / Food Court, Prizren · sugarfactory04@gmail.com</span><span>© 2026 Sugar Factory</span></footer>
+
+<script>
+{
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* intro words */
+const words="Gëzimi nuk ka moshë. Ëmbëlsirat janë çaste që të bëjnë të buzëqeshësh.".split(' ');
+$('#say').innerHTML=words.map((w,i)=>`<span class="${i<4?'':'b'}">${w}</span>`).join(' ');
+const sayW=$$('#say span');
+
+/* menu data */
+const A=["Banane & dredhëza","Bueno","Ferrero Rocher","Lotus Biscoff","Kinder","Raffaello","Akullore"];
+const B=["Banane & dredhëza","Bueno","Oreo","Bounty","M&M","M&M + çokollatë e bardhë","Reese's","Ferrero Rocher","Akullore","Raffaello","Lotus Biscoff","Arra + akullore","Mjaltë + arra"];
+const cats=[
+ {id:"waffle",t:"Waffle",ic:"ic-waffle",items:[["Waffle","","2.30€","waffle"],["Bubble Waffle","","2.30€","bubble"],["Waffle Stick","","1.50€","stick"],["Waffle Box","","2.50€","wbox"]],tops:["Mbushjet për waffle",A]},
+ {id:"crepe",t:"Crepe",ic:"ic-crepe",items:[["Crepe","","1.50€","crepe"],["Crepe Box","","2€","crepebox"]],tops:["Mbushjet për crepe",B]},
+ {id:"pancake",t:"Pancake",ic:"ic-pancake",items:[["Pancake","2 copë","2€","pancake2",["Nutella","Pistachio","Nutella + White Chocolate"]],["Pancake","4 copë","3.50€","pancake4",["Nutella","Pistachio","Nutella + White Chocolate"]],["Mini Pancake","8 copë","2.50€","mini",["Fruta mali","Pistachio + akullore","Choco Premium","Bueno Gold + Pistachio","Oreo","Lotus Biscoff","Raffaello","Dredhëza","M&M"]]]},
+ {id:"embelsira",t:"Ëmbëlsira",ic:"ic-churros",items:[["Churros","8 copë","3.50€","churros"],["Donuts","","1.50€","donut",["Chocolate","Dredhëz","Pistachio"]],["Macarons","copa","1€","macarons",["Pistachio","Chocolate","Strawberry","Raspberry","Lemon","Blue Vanilla","Passion Fruit"]],["Croissant Menu","me kafe, limonadë ose boronicë","2€","croissant",["Chocolate","Pistachio"]],["Akullore","topi","0.70€","icecream",["Chocolate","Vanillë","Caramel","Dredhëz","Pistachio"]]]},
+ {id:"pije",t:"Pije",ic:"ic-shake",items:[["Milkshakes","","3.50€","shake",["Nutella","Oreo","Kinder Bueno","Pistachio","Strawberry","Ferrero Rocher"]],["Cocktails","","2.50€","cocktail",["Mango","Kiwi","Ananas","Dredhëz","Kokos","Pjeshkë","Choco","Karamel","Banane","Passion Fruit","Mix Berry","Mollë","Cocktail Mix"]]]}
+];
+$('#cnav').innerHTML=cats.map(c=>`<a href="#${c.id}">${c.t}</a>`).join('');
+$('#cats').innerHTML=cats.map(c=>`<div class="cat" id="${c.id}"><h3 class="rv"><img src="assets/${c.ic}.svg" alt="">${c.t}</h3><div class="cards">${c.items.map((m,i)=>`<article class="card pop${(i%3===1)?' dk':''}"><div class="ill"><img src="assets/${m[3]}.png" alt="${m[0]}" loading="lazy"></div><div class="ch"><h4>${m[0]}${m[1]?`<small>${m[1]}</small>`:''}</h4><span class="pr">${m[2]}</span></div>${m[4]?`<div class="fv">${m[4].map(f=>`<span>${f}</span>`).join('')}</div>`:''}</article>`).join('')}</div>${c.tops?`<div class="tops rv"><div class="bb">extras 0.70€<b>${c.tops[0]}</b></div><div>${c.tops[1].map(t=>`<span>${t}</span>`).join('')}</div></div>`:''}</div>`).join('');
+$$('.pop').forEach((el,i)=>el.style.transitionDelay=(i%4)*0.08+'s');
+
+/* factory belt */
+const beltItems=["waffle","donut","shake","crepe","macarons","bubble","churros","pancake4","cocktail","wbox"];
+const names={waffle:"Waffle",donut:"Donuts",shake:"Milkshake",crepe:"Crepe",macarons:"Macarons",bubble:"Bubble Waffle",churros:"Churros",pancake4:"Pancakes",cocktail:"Cocktails",wbox:"Waffle Box"};
+$('#belt').innerHTML=beltItems.map(k=>`<div class="it"><img src="assets/${k}.png" alt=""></div>`).join('');
+const its=$$('#belt .it');
+const gearPos=[[21.1,63.4,5.4],[37.8,63.4,5.4],[54.5,63.4,5.4],[70.9,63.4,5.4]];
+const mach=$('#mach');
+gearPos.forEach(g=>{const d=document.createElement('div');d.className='gear';d.style.cssText=`left:${g[0]}%;top:${g[1]}%;width:${g[2]}%;aspect-ratio:1;translate:-50% -50%;background:conic-gradient(from 0deg,transparent 0 20deg,rgba(165,212,243,.85) 20deg 28deg,transparent 28deg 110deg,rgba(165,212,243,.85) 110deg 118deg,transparent 118deg 200deg,rgba(165,212,243,.85) 200deg 208deg,transparent 208deg 290deg,rgba(165,212,243,.85) 290deg 298deg,transparent 298deg)`;mach.appendChild(d);});
+const gears=$$('.gear');
+
+/* scroll engine */
+const nav=$('#nav'),hero=$('#top'),logo=$('#heroLogo'),fls=$$('.fl'),fac=$('#fabrika'),fcount=$('#fcount'),uicon=$('#uicon'),gimgs=$$('.gg img');
+const sp={waffle:[.35,-14],donut:[.6,20],shake:[.5,16],macarons:[.4,-18],bubble:[.7,10],churros:[.55,-12]};
+const prog=el=>{const r=el.getBoundingClientRect();return Math.min(1,Math.max(0,-r.top/(r.height-innerHeight)));};
+let tk=false,lastShown='';
+const run=()=>{tk=false;const y=scrollY,vh=innerHeight;
+ nav.classList.toggle('on',y>30);
+ /* intro words */
+ const ir=$('#say').getBoundingClientRect();const ip=Math.min(1,Math.max(0,(vh*0.85-ir.top)/(ir.height+vh*0.35)));
+ sayW.forEach((s,i)=>s.classList.toggle('on',ip*sayW.length>i));
+ /* factory */
+ const fp=prog(fac);const n=its.length,span=1/(n*0.55);
+ let showing='';
+ its.forEach((it,i)=>{const s=i*(1-span)/(n-1);let t=(fp-s)/span;
+  if(reduce){it.style.opacity=t>0&&t<1?1:0;it.style.transform=`translateX(${t*490}%)`;return;}
+  if(t<=0||t>=1){it.style.opacity=0;return;}
+  const drop=t<.12?(1-t/.12):0;const out=t>.9?(t-.9)/.1:0;
+  it.style.opacity=1-out;
+  it.style.transform=`translateX(${(t*490)-10}%) translateY(${-drop*180}%) scale(${1-out*.3}) rotate(${drop*-25}deg)`;
+  if(t>.3&&t<.75)showing=names[beltItems[i]];});
+ if(showing!==lastShown){fcount.textContent=showing?`Po prodhohet: ${showing}`:'';lastShown=showing;}
+ gears.forEach((g,i)=>g.style.rotate=(fp*1440*(i%2?-1:1))+'deg');
+ /* menu nav */
+ let cur=cats[0].id;cats.forEach(c=>{if(document.getElementById(c.id).getBoundingClientRect().top<vh*.4)cur=c.id;});
+ $$('#cnav a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+cur));
+ if(reduce)return;
+ /* hero */
+ const hp=Math.min(1,y/vh);
+ logo.style.transform=`translateY(${hp*80}px) scale(${1-hp*.15}) rotate(${hp*-3}deg)`;
+ fls.forEach(f=>{const s=sp[f.dataset.k]||[.4,10];f.style.transform=`translateY(${-y*s[0]}px) rotate(${hp*s[1]}deg)`;});
+ /* gallery parallax */
+ gimgs.forEach(im=>{const r=im.parentElement.getBoundingClientRect();im.style.transform=`translateY(${-((r.top+r.height/2-vh/2)/vh)*30-8}%)`;});
+ /* u icon */
+ const ur=uicon.getBoundingClientRect();uicon.style.transform=`rotate(${(ur.top-vh/2)*-0.06}deg)`;
+};
+addEventListener('scroll',()=>{if(!tk){tk=true;requestAnimationFrame(run);}},{passive:true});
+addEventListener('resize',run);run();
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+$$('.rv,.pop').forEach(el=>io.observe(el));
+/* gentle idle float in hero */
+if(!reduce)fls.forEach((f,i)=>f.firstElementChild.animate([{transform:'translateY(0)'},{transform:'translateY(-14px)'}],{duration:2200+i*300,direction:'alternate',iterations:Infinity,easing:'ease-in-out'}));
+}
+</script>
+</body>
+</html>
